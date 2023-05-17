@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <h3 class="no-item" text-center
+      *ngIf="loadItems().length ===0">No
+    report available yet!</h3>
+
+     <img src = "{{imgURL}}" height = "100" width="100" />
+
+  <!--  showing a list of grocery items below that-->
+  <ion-list>
+    <ion-item-sliding
+      *ngFor="let item of loadItems(), let i = index">
+      <ion-item text-wrap>
+        <h2>{{item.name}}</h2>       
+        <p>{{item.report}}</p>      
+      </ion-item>
+      <ion-item-options>
+        <button
+          (click)="editItem(item, i)"
+          ion-button color="primary"
+          icon-start>
+          <ion-icon name="create">
+          </ion-icon>
+          Edit
+        </button>
+
+        <button
+          (click)="shareItem(item, i)"
+          ion-button color="light"
+          icon-start>
+          <ion-icon name="share">
+          </ion-icon>
+          share
+        </button>
+
+        <button
+          (click)="removeItem(item, i)"
+          ion-button color="secondary"
+          icon-start>
+          <ion-icon name="trash">
+          </ion-icon>
+          Done
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <!--  list of grocery items ends here -->
+
+  <!--  fab for adding things to your app -->
+  <!-- <ion-fab bottom right>
+    <button (click)="addItem()" ion-fab
+            mini>
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab> -->
+
+ <!-- fab list to include camera native feature -->
+    <ion-fab right bottom>
+       <button ion-fab ><ion-icon name="arrow-dropleft"></ion-icon></button>
+       <ion-fab-list side="left">
+
+         <button  (click)="addItem()"ion-fab><ion-icon name="add"></ion-icon></button>
+         <button (click)="getCamera()" ion-fab><ion-icon name="camera"></ion-icon></button>
+         <button (click)="getGallery()" ion-fab><ion-icon name="albums"></ion-icon></button>
+
+       </ion-fab-list>
+     </ion-fab>
+       <!-- fab list ends here -->
+
+</ion-content>
